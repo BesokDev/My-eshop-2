@@ -67,6 +67,11 @@ class Produit
      */
     private $deletedAt;
 
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $collection;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -188,6 +193,18 @@ class Produit
     public function setDeletedAt(?\DateTimeInterface $deletedAt): self
     {
         $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    public function getCollection(): ?string
+    {
+        return $this->collection;
+    }
+
+    public function setCollection(string $collection): self
+    {
+        $this->collection = $collection;
 
         return $this;
     }
