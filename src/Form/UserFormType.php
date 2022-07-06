@@ -44,7 +44,7 @@ class UserFormType extends AbstractType
                         'message' => 'Ce champ ne peut être vide'
                     ]),
                     new Length([
-                        'min' => 8,
+                        'min' => 4,
                         'max' => 255,
                         'minMessage' => "Votre mot de passe doit comporter {{ limit }} caractères minimum.",
                         'maxMessage' => "Votre mot de passe doit comporter {{ limit }} caractères maximum."
