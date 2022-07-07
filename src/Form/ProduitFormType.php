@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Image;
 
 class ProduitFormType extends AbstractType
 {
@@ -65,6 +67,14 @@ class ProduitFormType extends AbstractType
             ->add('photo', FileType::class, [
                 'label' => "Photo du produit",
 //                'data_class' => null,
+                'constraints' => [
+                    new Image([
+                        'mimeTypes' => ['image/jpeg', 'image/png'],
+                        'mimeTypesMessage' => 'Les formats autorisés sont .jpg ou .png',
+                        'maxSize' => '3M',
+                        'maxSizeMessage' => 'Le poids maximal du fichier est : {{ limit }} {{ suffix }} ({{ name }}: {{ size }} {{ suffix }})',
+                    ])
+                ]
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',
@@ -80,6 +90,9 @@ class ProduitFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Produit::class,
+            'allow_file_upload' => true,
+            # Variable 'photo' déclarée par défaut à NULL, cela nous servira pour la modification.
+            'photo' => null,
         ]);
     }
 }
