@@ -66,7 +66,7 @@ class ProduitFormType extends AbstractType
             ])
             ->add('photo', FileType::class, [
                 'label' => "Photo du produit",
-//                'data_class' => null,
+                'data_class' => null,
                 'constraints' => [
                     new Image([
                         'mimeTypes' => ['image/jpeg', 'image/png'],
@@ -77,7 +77,7 @@ class ProduitFormType extends AbstractType
                 ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Ajouter',
+                'label' => $options['photo'] ? 'Modifier' : 'Ajouter',
                 'validate' => false,
                 'attr' => [
                     'class' => 'd-block mx-auto col-3 btn btn-success'
