@@ -43,7 +43,8 @@
                         <td>{{ produit.size }}</td>
                         <td>{{ produit.collection }}</td>
                         <td>
-                            <img src="#" alt="Photo de tee-shirt">
+                            <img src="{{ asset('uploads/' ~ produit.photo) }}"
+                                 alt="Photo de tee-shirt" width="80" height="58" class="img-thumbnail">
                         </td>
                         <td>{{ produit.price }} €</td>
                         <td>{{ produit.createdAt | date('d/m/Y') }}</td>
