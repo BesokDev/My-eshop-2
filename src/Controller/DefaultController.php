@@ -18,8 +18,6 @@ class DefaultController extends AbstractController
      */
     public function home(EntityManagerInterface $entityManager): Response
     {
-
-
         return $this->render('default/home.html.twig', [
             'produits' => $entityManager->getRepository(Produit::class)->findBy(['deletedAt' => null])
         ]);
